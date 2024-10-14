@@ -9,3 +9,4 @@ const Clearance = () => {
 }
 
 export default Clearance
+
