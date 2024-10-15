@@ -3,10 +3,11 @@ import { Box,Image,Text } from '@chakra-ui/react'
 import { useState,useEffect } from 'react'
 import axios from 'axios'
 const Women = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const[women,setwomen]=useState([])
 
   const getData=()=>{
-      axios.get('http://localhost:8080/product?category=women').then((res)=>{
+      axios.get(`${backendUrl}/product?category=women`).then((res)=>{
           console.log(res.data.msg)
           setwomen(res.data.msg)
       }).catch((err)=>{

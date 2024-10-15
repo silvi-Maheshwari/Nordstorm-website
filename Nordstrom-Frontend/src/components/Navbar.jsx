@@ -15,11 +15,12 @@ const Navbar = () => {
   const [loading, setLoading] = useState(false);
 
   const handleSearch = async (e) => {
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
   
     if (searchQuery.trim()) {
       setLoading(true); 
       try {
-        const response = await fetch(`http://localhost:8080/product?name=${searchQuery}`);
+        const response = await fetch(`${backendUrl}/product?name=${searchQuery}`);
         const data = await response.json();
         setSearchResults(data.msg); 
       } catch (error) {

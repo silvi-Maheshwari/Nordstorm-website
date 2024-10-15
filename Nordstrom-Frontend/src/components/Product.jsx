@@ -4,9 +4,10 @@ import axios from 'axios';
 import { Box, Button, Image, Radio, RadioGroup, Stack, Text } from '@chakra-ui/react';
 
 const Product = () => {
+    const backendUrl = import.meta.env.VITE_BACKEND_URL;
     const { id } = useParams();
     const [p, setp] = useState('');
-    const URL = `http://localhost:8080/product/${id}`;
+    const URL = `${backendUrl}/product/${id}`;
 
     const getData = () => {
         axios.get(URL).then((res) => {
@@ -24,7 +25,7 @@ const Product = () => {
 
     return (
         <>
-            <Box display={"flex"} padding={"10px"} filter={"brightness(.97)"} width={"90%"}   mt={"3%"}>
+            <Box display={"flex"} padding={"10px"} filter={"brightness(.97)"} width={"90%"} margin={"auto"}   mt={"3%"}>
                 <Box>
                     <Image src={p.image} alt={p.name} />
                 </Box>

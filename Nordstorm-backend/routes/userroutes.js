@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const usermodel = require('../models/usermodel');
 const userRouter = express.Router();
+const secretkey=process.env.secretkey
 // const usermodel = require('../modules/user');
 var salt = bcrypt.genSaltSync(10);
 userRouter.post('/register', async (req, res) => {
@@ -36,7 +37,7 @@ userRouter.post('/login', async (req, res) => {
         // Compare password
         const isPasswordValid = bcrypt.compareSync(req.body.password, userdata.password);
         if (isPasswordValid) {
-            const token = jwt.sign({ userid: userdata._id }, 'shhhhh', { expiresIn: '1h' }); // Set an expiry for the token
+            const token = jwt.sign({ userid: userdata._id }, secretkey, { expiresIn: '1h' }); // Set an expiry for the token
             console.log("Token successfully generated", token);
             res.json({ msg: "User login successful", token });
         } else {

@@ -39,7 +39,7 @@ const BeautyDetails = () => {
 
     return (
         <>
-            <Box display={"flex"} padding={"10px"} filter={"brightness(.97)"} width={"90%"}   mt={"3%"}>
+            <Box display={"flex"} padding={"10px"} filter={"brightness(.97)"} width={"90%"} margin={"auto"}  mt={"3%"}>
                 <Box>
                     <Image src={beautyd.image} alt={beautyd.name} />
                 </Box>
@@ -47,6 +47,8 @@ const BeautyDetails = () => {
                     <Text>{beautyd.name}</Text>
                     <Text>${beautyd.price}</Text>
                     <hr />
+
+                    
                     <RadioGroup border='1px' padding='20px' mt={"8%"} fontWeight={"400"}>
                         <Stack direction="row">
                             <Radio>Free pickup at choose store</Radio>

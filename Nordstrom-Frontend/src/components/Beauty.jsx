@@ -5,6 +5,7 @@ import { PiStarFill } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
 
 const Beauty = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const [beauty, setBeauty] = useState([]);
   const [sortorder, setsortorder] = useState('');
 
@@ -21,15 +22,15 @@ const Beauty = () => {
       });
   };
 
-  // Handle sorting change
+ 
   const handlesortchange = (e) => {
     const value = e.target.value;
     setsortorder(value);
-    getData(`http://localhost:8080/product?sort=price&order=${value}&category=Beauty`); 
+    getData(`${backendUrl}/product?sort=price&order=${value}&category=Beauty`); 
   };
 
   useEffect(() => {
-    getData('http://localhost:8080/product?category=Beauty');
+    getData(`${backendUrl}/product?category=Beauty`);
   }, []);
 
   return (

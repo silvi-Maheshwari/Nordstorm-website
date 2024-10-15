@@ -1,26 +1,18 @@
 import React, { useState } from 'react';
-import {
-  Box,
-  Button,
-  Input,
-  Text,
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  VStack,
-} from '@chakra-ui/react';
+import {Box,Button,Input,Text,FormControl, FormLabel,FormErrorMessage,VStack,} from '@chakra-ui/react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
 
 const Sign = () => {
-  const [isSignIn, setIsSignIn] = useState(false); // Track whether it's sign-in or sign-up
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const [isSignIn, setIsSignIn] = useState(false); 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState(""); // For account creation
+  const [name, setName] = useState(""); 
   const [emailError, setEmailError] = useState("");
-  const [error, setError] = useState(""); // For error messages
-  const [success, setSuccess] = useState(""); // For success messages
-  const navigate = useNavigate(); // Initialize useNavigate
+  const [error, setError] = useState(""); 
+  const [success, setSuccess] = useState(""); 
+  const navigate = useNavigate(); 
 
   const validateEmail = () => {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -37,7 +29,7 @@ const Sign = () => {
       if (isSignIn) {
         // Sign in logic
         try {
-          const response = await axios.post('http://localhost:8080/user/login', { email, password });
+          const response = await axios.post(`${backendUrl}/user/login`, { email, password });
           console.log(response.data);
         setSuccess(response.data.msg);
 
@@ -49,7 +41,7 @@ const Sign = () => {
       } else {
       
         try {
-          const response = await axios.post('http://localhost:8080/user/register', { email, password, name });
+          const response = await axios.post(`${backendUrl}/user/register`, { email, password, name });
           console.log(response.data);
           setSuccess(response.data.msg);
       

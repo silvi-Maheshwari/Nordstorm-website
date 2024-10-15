@@ -4,11 +4,11 @@ import axios from 'axios'
 
 
 const Kids = () => {
-
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
   const[kids,setkids]=useState([])
 
   const getData=()=>{
-      axios.get('http://localhost:8080/product?category=kids').then((res)=>{
+      axios.get(`${backendUrl}/product?category=kids`).then((res)=>{
           console.log(res.data.msg)
           setkids(res.data.msg)
       }).catch((err)=>{
